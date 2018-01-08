@@ -11,9 +11,9 @@
 
     <h3>Opening: {{opening.label}}</h3>
 
-    <ul>
-        <li v-for="e in eConstruct" :key="e.t">
-          <strong>{{timeStamp(e.t)}}:</strong> {{e.d}} | {{e.e}}
+    <ul class="actions">
+        <li v-for="e in eConstruct" :key="e.t" :data-type="e.e">
+          <strong>{{timeStamp(e.t)}}:</strong> {{structName(e.d)}}
         </li>
     </ul>
   </section>
@@ -52,6 +52,9 @@ export default {
         default:
           return false;
       }
+    },
+    structName(s) {
+      return s.replace('warren_', '').replace('structure_', '');
     },
   },
   computed: {
@@ -138,10 +141,11 @@ export default {
 .player {
     display: inline-block;
     margin: 0 10px;
-    min-width: 322px;
+    min-width: 352px;
     padding: 0 20px;
     position: relative;
     width: 22%;
+    vertical-align: top;
 
     .portrait {
       background: url('../assets/portrait_block.png') no-repeat center top;
@@ -165,21 +169,10 @@ export default {
       }
     }
 
-    &[data-faction="Hopper"] {
-        h2 { color: #D21E1E; }
-    }
-
-    &[data-faction="Bellafide"] {
-        h2 { color: #148CFA; }
-    }
-
-    &[data-faction="Archimedes"] {
-        h2 { color: #FFDC00; }
-    }
-
-    &[data-faction="Quartermaster"] {
-        h2 { color: #2ECC40; }
-    }
+    &[data-faction="Hopper"] h2 { color: #D21E1E; }
+    &[data-faction="Bellafide"] h2 { color: #148CFA; }
+    &[data-faction="Archimedes"] h2 { color: #FFDC00; }
+    &[data-faction="Quartermaster"] h2 { color: #2ECC40; }
 
     .deck {
       position: absolute;
@@ -193,7 +186,6 @@ export default {
     }
 
     ul {
-      display: inline-block;
       list-style: none;
       margin: 0;
       max-height: 160px;

@@ -5,7 +5,7 @@
         <ScatterChart :chart-data="graphData" class="chart"></ScatterChart>
 
         <div class="milestones">
-          <span class="pog" v-for="m in milestones" :key="m.id" :style="{ left: m.pos }" :data-type="m.type"></span>
+          <span class="pog" v-for="m in milestones" :key="m.id" :style="{ left: m.pos }" :data-type="m.type" :data-faction="data.Players.Player[m.p].FactionId.txt"></span>
         </div>
       </div>
 
@@ -59,6 +59,8 @@ export default {
       const m = [];
       const matchLen = parseInt(this.gevents[this.gevents.length - 1].t);
       let fk = false;
+      let ft2 = false;
+      let ft3 = false;
 
       for (let x = 0, gl = this.gevents.length; x < gl; x += 1) {
         const e = this.gevents[x];
@@ -80,6 +82,18 @@ export default {
           e.type = 'expand';
           m.push(e);
         }
+        // First T2
+        if (e.e === 'Produce' && !ft2 && e.d.match(/skunk|snak|ferr|chamel|falco/gi)) {
+          e.type = 't2Build';
+          m.push(e);
+          ft2 = true;
+        }
+        // First T3
+        if (e.e === 'Produce' && !ft3 && e.d.match(/fox|owl|wolf|boar|badger/gi)) {
+          e.type = 't3Build';
+          m.push(e);
+          ft3 = true;
+        }
 
         // Calculate position
         const pos = parseInt(e.t) / matchLen;
@@ -95,6 +109,7 @@ export default {
       ev.preventDefault();
       const files = ev.dataTransfer.files;
       const read = new FileReader();
+      this.data = {}; // Clear data
 
       read.onload = (e) => {
         const contents = e.target.result;
@@ -286,7 +301,29 @@ main {
     &[data-type="firstKill"]:before { content: "🗡"; }
     &[data-type="expand"]:before { content: "🏠"; }
     &[data-type="t3Kill"]:before { content: "☠"; }
+    &[data-type="t2Build"]:before { 
+      background: url(../assets/icons/t2.png) no-repeat center center;
+      background-size: 100% auto;
+      content: '';
+      display: block;
+      height: 32px;
+      width: 32px;
+    }
+    &[data-type="t3Build"]:before { 
+      background: url(../assets/icons/t3.png) no-repeat center center;
+      background-size: 100% auto;
+      content: '';
+      display: block;
+      height: 32px;
+      width: 32px;
+    }
 
+    &[data-faction="0"] { box-shadow: 0 0 0 3px #D21E1E; }
+    &[data-faction="1"] { box-shadow: 0 0 0 3px #148CFA; }
+    &[data-faction="2"] { box-shadow: 0 0 0 3px #FFDC00; }
+    &[data-faction="3"] { box-shadow: 0 0 0 3px #2ECC40; }
+
+    /*
     &:after {
       background: white;
       content: '';
@@ -296,6 +333,7 @@ main {
       width: 1px;
       z-index: -1;
     }
+    */
   }
 }
 
