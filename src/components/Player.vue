@@ -9,11 +9,11 @@
       <pog v-for="u in deck" :key="u" :unit="u"></pog>
     </div>
 
-    <h3>Opening: {{opening.label}}</h3>
+    <h3 :title="opening.id">Opening: {{opening.label}}</h3>
 
     <ul class="actions">
         <li v-for="e in eConstruct" :key="e.t" :data-type="e.e">
-          <strong>{{timeStamp(e.t)}}:</strong> {{structName(e.d)}}
+          <strong>{{timeStamp(e.t)}}:</strong><span>{{structName(e.d)}}</span><pog :key="u" :unit="structName(e.d)"></pog>
         </li>
     </ul>
   </section>
@@ -138,7 +138,13 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .player {
+    animation: fadeUp 1s ease;
     display: inline-block;
     margin: 0 10px;
     min-width: 352px;
@@ -146,6 +152,10 @@ export default {
     position: relative;
     width: 22%;
     vertical-align: top;
+
+    &:nth-child(2) {
+      animation: fadeUp 2s ease;
+    }
 
     .portrait {
       background: url('../assets/portrait_block.png') no-repeat center top;
@@ -185,7 +195,7 @@ export default {
       }
     }
 
-    ul {
+    .actions {
       list-style: none;
       margin: 0;
       max-height: 160px;
@@ -193,6 +203,18 @@ export default {
       padding: 0;
       text-align: left;
       vertical-align: top;
+
+      li {
+        align-items: center;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        margin-bottom: 2px;
+        padding: 5px 10px;
+        text-transform: capitalize;
+
+        span { flex-grow: 1; }
+        img { max-width: 32px; }
+      }
     }
 }
 </style>

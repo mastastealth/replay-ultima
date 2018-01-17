@@ -298,24 +298,26 @@ main {
     transform: translateX(-24px);
     width: 32px;
 
-    &[data-type="firstKill"]:before { content: "🗡"; }
-    &[data-type="expand"]:before { content: "🏠"; }
-    &[data-type="t3Kill"]:before { content: "☠"; }
-    &[data-type="t2Build"]:before { 
-      background: url(../assets/icons/t2.png) no-repeat center center;
-      background-size: 100% auto;
+    &:before {
+      background-size: 100% auto !important;
+      border-radius: 100%;
       content: '';
       display: block;
       height: 32px;
       width: 32px;
     }
+
+    &[data-type="firstKill"]:before { content: "🗡"; }
+    &[data-type="expand"]:before {
+      background: url(../assets/icons/mill.png) no-repeat center center;
+      display: block;
+    }
+    &[data-type="t3Kill"]:before { content: "☠"; }
+    &[data-type="t2Build"]:before { 
+      background: url(../assets/icons/t2.png) no-repeat center center;
+    }
     &[data-type="t3Build"]:before { 
       background: url(../assets/icons/t3.png) no-repeat center center;
-      background-size: 100% auto;
-      content: '';
-      display: block;
-      height: 32px;
-      width: 32px;
     }
 
     &[data-faction="0"] { box-shadow: 0 0 0 3px #D21E1E; }
