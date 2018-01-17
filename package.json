@@ -4,7 +4,7 @@
   "description": "A Tooth and Tail replay analysis tool.",
   "author": "Brian Franco <mastastealth+git@gmail.com>",
   "private": true,
-  "homepage": "git@github.com:mastastealth/replay-ultima
+  "homepage": "git@github.com:mastastealth/replay-ultima",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
