@@ -4,17 +4,20 @@
   "description": "A Tooth and Tail replay analysis tool.",
   "author": "Brian Franco <mastastealth+git@gmail.com>",
   "private": true,
+  "homepage": "git@github.com:mastastealth/replay-ultima
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+	"deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
     "chart.js": "^2.7.1",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.0.2",
     "vue-drag-drop": "^0.2.2",
+    "vue-gh-pages": "^1.7.5",
     "vue-router": "^3.0.1",
     "xml-js": "^1.6.1"
   },
