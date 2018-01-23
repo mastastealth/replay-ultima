@@ -38,7 +38,7 @@ export default {
       return date.toISOString().substr(14, 5);
     },
     factionImg(fid) {
-      const images = require.context('../assets/comms/', false, /\.png$/);
+      const images = require.context('../assets/comms/', false, /\.jpg$/);
 
       switch (fid) {
         case '0':
