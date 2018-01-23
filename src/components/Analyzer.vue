@@ -247,12 +247,26 @@ export default {
       };
     },
   },
+  created() {
+    // If we got a replay in FB to check
+    if (this.$route.params.id) {
+      fetch(`https://pocketbot-40684.firebaseio.com/balance/replays_v2/${this.$route.params.id}.json`)
+        .then(resp => resp.json())
+        .then((r) => {
+          // Use data from replay
+          // eslint-disable-next-line
+          for (const prop in r) { this.$set(this.data, prop, r[prop]); }
+          this.fillData();
+        });
+    }
+  },
 };
 </script>
 
 <style lang="scss">
 main {
   height: 100%;
+  overflow-x: hidden;
 }
 
 .brand {

@@ -5,7 +5,7 @@
       <img :src="factionImg(FactionId.txt)" :alt=FactionId.txt>
     </div>
 
-    <div class="deck">
+    <div class="deck" v-if="deck">
       <pog v-for="u in deck" :key="u" :unit="u"></pog>
     </div>
 
@@ -13,7 +13,7 @@
 
     <ul class="actions">
         <li v-for="e in eConstruct" :key="e.t" :data-type="e.e">
-          <strong>{{timeStamp(e.t)}}:</strong><span>{{structName(e.d)}}</span><pog :key="u" :unit="structName(e.d)"></pog>
+          <strong>{{timeStamp(e.t)}}:</strong><span>{{structName(e.d)}}</span><pog :key="e.t" :unit="structName(e.d)"></pog>
         </li>
     </ul>
   </section>
@@ -78,7 +78,7 @@ export default {
       return this.Deck.Cards.Card.map(u => u.attr.Data.replace('warren_', '').replace('structure_', ''));
     },
     isWinner() {
-      return (this.Winner === this.ArmyIndex.txt) ? '☆ ' : null;
+      return (this.Winner === this.ArmyIndex.txt) ? '🌟 ' : null;
     },
     eProd() { return this.pevents.filter(e => e.e === 'Produce' && (e.d !== 'pig' && !e.d.includes('farm'))); },
     eSold() { return this.pevents.filter(e => e.e === 'Sell'); },
@@ -161,7 +161,7 @@ export default {
       background: url('../assets/portrait_block.png') no-repeat center top;
       background-size: 100% auto;
       height: 345px;
-      margin: 0;
+      margin: 0 auto;
       max-width: 376px;
       padding: 15% 6% 4%;
       position: relative;

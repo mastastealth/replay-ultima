@@ -11,5 +11,10 @@ export default new Router({
       name: 'Analyzer',
       component: Analyzer,
     },
+    {
+      path: '/:id',
+      name: 'AnalyzerSingle',
+      component: Analyzer,
+    },
   ],
 });
