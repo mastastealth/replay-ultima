@@ -83,7 +83,7 @@ export default {
           m.push(e);
         }
         // First T2
-        if (e.e === 'Produce' && !ft2 && e.d.match(/skunk|snak|ferr|chamel|falco/gi)) {
+        if (e.e === 'Produce' && !ft2 && e.d.match(/skunk|snake|ferret|chamel|falco/gi)) {
           e.type = 't2Build';
           m.push(e);
           ft2 = true;
