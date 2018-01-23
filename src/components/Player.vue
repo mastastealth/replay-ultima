@@ -42,13 +42,13 @@ export default {
 
       switch (fid) {
         case '0':
-          return images('./Hopper.png');
+          return images('./Hopper.jpg');
         case '1':
-          return images('./Bellafide.png');
+          return images('./Bellafide.jpg');
         case '2':
-          return images('./Archimedes.png');
+          return images('./Archimedes.jpg');
         case '3':
-          return images('./Quartermaster.png');
+          return images('./Quartermaster.jpg');
         default:
           return false;
       }
