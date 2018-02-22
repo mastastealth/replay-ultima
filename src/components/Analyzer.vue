@@ -213,10 +213,10 @@ export default {
         }
       });
 
-      const g0 = gData.filter(data => data.id === '1');
+      const g0 = gData.filter(data => data.id === '0');
       g0.unshift({ x: 0, y: 0 });
 
-      const g1 = gData.filter(data => data.id === '0');
+      const g1 = gData.filter(data => data.id === '1');
       g1.unshift({ x: 0, y: 0 });
 
       this.graphData = {
